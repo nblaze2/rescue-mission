@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 questions = Question.create([
-  { title: 'How do I turn digital lead in digital gold?', username: 'billybob123', text: 'I am looking for the digital alchemy secret. Does anyone know the digital Nicolas Flammel?' },
-  { title: 'Where are my pants?', username: 'davidkoechner', text: 'I have lost my pants somewhrere. Have you seen them?' },
-  { title: 'What is the meaning of digital life?', username: 'thanksforallthefish22', text: '42 is the answer so I am told. What do you think?' },
+  { title: 'How do I turn digital lead in digital gold?', username: 'billybob123', body: 'I am looking for the digital alchemy secret. Does anyone know the digital Nicolas Flammel?' },
+  { title: 'Where are my pants?', username: 'davidkoechner', body: 'I have lost my pants somewhrere. Have you seen them?' },
+  { title: 'What is the meaning of digital life?', username: 'thanksforallthefish22', body: '42 is the answer so I am told. What do you think?' }
   ])
