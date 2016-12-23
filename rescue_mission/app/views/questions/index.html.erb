@@ -1,7 +1,13 @@
 <h1>Questions</h1>
 
-<ul>
+<ol>
   <% @questions.each do |question| %>
-  <li><%= question.title %></li>
+  <li>
+    <strong><%= question.title %></strong>
+    <%= link_to 'Details', question %>
+    (<%= question.updated_at %>)
+  </li>
   <% end %>
-</ul>
+</ol>
+
+<%= link_to 'Post a New Question', new_question_path %>
