@@ -5,7 +5,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @question.body %>
+  <%= @html_string.html_safe %>
 </p>
 <p>
   <strong>Posted by:</strong>
@@ -26,7 +26,7 @@
   <% @question.answers.each do |answer| %>
   <li>
     <strong><%= answer.title %></strong> | <strong>Posted by:</strong> <%= answer.username %> | (<%= answer.updated_at %>)
-    <br/><%= answer.body %>
+    <br/><%= @markdown.render(answer.body).html_safe %>
   </li>
   <% end %>
 </ol>

@@ -7,6 +7,8 @@ class QuestionsController < ApplicationController
 
   def show
     @answers = Answer.all.order(created_at: :asc)
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @html_string = @markdown.render(@question.body)
   end
 
   def new
@@ -37,7 +39,6 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    @question.answers.destroy
     redirect_to questions_url, notice: 'Question was successfully destroyed.'
   end
 

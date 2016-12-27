@@ -17,10 +17,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def destroy
-    @question.answers.destroy
-  end
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_answer
