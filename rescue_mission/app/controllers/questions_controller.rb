@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show] #, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
     @questions = Question.all.order(created_at: :desc)
   end
 
   def show
+    @answers = Answer.all.order(created_at: :asc)
   end
 
   def new
@@ -13,6 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @queston = Question.find(params[:id])
   end
 
   def create
@@ -25,6 +27,20 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def update
+    if @question.update(question_params)
+      redirect_to @question, notice: 'Question was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @question.destroy
+    @question.answers.destroy
+    redirect_to questions_url, notice: 'Question was successfully destroyed.'
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_question
@@ -33,6 +49,6 @@ class QuestionsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def question_params
-    params.require(:question).permit(:name)
+    params.require(:question).permit(:title, :body, :username)
   end
 end

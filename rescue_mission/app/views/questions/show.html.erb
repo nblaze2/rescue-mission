@@ -13,4 +13,22 @@
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', questions_path %>
+
+<br/>
+<br/>
+<%= link_to 'Post an Answer', new_question_answer_path(@question) %>
+<br/>
+<h2>Answers</h2>
+
+<ol>
+  <% @question.answers.each do |answer| %>
+  <li>
+    <strong><%= answer.title %></strong> | <strong>Posted by:</strong> <%= answer.username %> | (<%= answer.updated_at %>)
+    <br/><%= answer.body %>
+  </li>
+  <% end %>
+</ol>
+<br/>
 <%= link_to 'Back', questions_path %>
