@@ -1,0 +1,5 @@
+<%= form_for(answer) do |f| %>
+  <%= f.hidden_field(:chosen, :value => !answer.chosen) %>
+  <%= f.submit "Best Answer" %>
+  Chosen Value: <%= answer.chosen %>
+<% end %>

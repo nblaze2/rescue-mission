@@ -23,10 +23,26 @@
 <h2>Answers</h2>
 
 <ol>
-  <% @question.answers.each do |answer| %>
   <li>
-    <strong><%= answer.title %></strong> | <strong>Posted by:</strong> <%= answer.username %> | (<%= answer.updated_at %>)
+    <strong><%= @chosen_answer.title %></strong> | <strong>Posted by:</strong>
+    <%= @chosen_answer.username %> | (<%= @chosen_answer.updated_at %>)
+    <br/><%= @markdown.render(@chosen_answer.body).html_safe %>
+    <%= form_for(@chosen_answer) do |f| %>
+        <%= f.hidden_field(:chosen, :value => !@chosen_answer.chosen) %>
+        <%= f.submit "Best Answer" %>
+        Chosen Value: <%= @chosen_answer.chosen %>
+    <% end %>
+  </li>
+  <br/>
+  <% @answers.each do |answer| %>
+  <li>
+    <strong><%= answer.title %></strong> | <strong>Posted by:</strong>
+    <%= answer.username %> | (<%= answer.updated_at %>)
     <br/><%= @markdown.render(answer.body).html_safe %>
+    <%= form_for(answer) do |f| %><%= f.hidden_field(:chosen, :value => !answer.chosen) %><%= f.submit "Best Answer" %>
+      Chosen Value: <%= answer.chosen %>
+    <% end %>
+    <br/>
   </li>
   <% end %>
 </ol>

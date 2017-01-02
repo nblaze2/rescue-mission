@@ -17,6 +17,16 @@ class AnswersController < ApplicationController
     end
   end
 
+  def update
+    @answer = Answer.find(params[:id])
+    binding.pry
+    if @answer.update_attributes(answer_params)
+      redirect_to question_path(@answer.question), notice: 'Answer was successfully updated.'
+    else
+      redirect_to question_path(@answer.question), notice: 'Answer failed to update.'
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_answer
@@ -25,6 +35,6 @@ class AnswersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def answer_params
-    params.require(:answer).permit(:title, :body, :username)
+    params.require(:answer).permit(:title, :body, :username, :chosen)
   end
 end

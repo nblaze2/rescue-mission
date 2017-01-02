@@ -6,7 +6,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = Answer.all.order(created_at: :asc)
+    @answers = @question.answers.order(updated_at: :asc)
+    @chosen_answer = @answers.find { |answer| answer.chosen == true }
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     @html_string = @markdown.render(@question.body)
   end
